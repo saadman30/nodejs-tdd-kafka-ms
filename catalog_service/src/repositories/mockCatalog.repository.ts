@@ -11,7 +11,7 @@ export class MockCatalogRepository implements ICatalogRepository {
         return Promise.resolve(product);
     }
     update(data: Product): Promise<Product | null> {
-        throw new Error("Method not implemented.");
+        return Promise.resolve(data);
     }
     delete(id: number): Promise<Product> {
         throw new Error("Method not implemented.");

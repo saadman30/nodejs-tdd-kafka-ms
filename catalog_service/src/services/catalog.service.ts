@@ -7,18 +7,16 @@ export class CatalogService {
         this._repository = repository;
     }
 
-    async createProduct(product: Product): Promise<Product> {
-        return {
-            id: 1,
-            name: "ertert",
-            description: "ertert",
-            price: 10230,
-            stock: 1023
-        }
+    async createProduct(input: any): Promise<Product> {
+       const newProduct = await this._repository.create(input);
+       if(!newProduct.id) {
+        throw new Error("Unable to create product");
+       }
+       return newProduct;
     }
 
-    async updateProduct(id: number, product: Product): Promise<Product | null> {
-        return this._repository.update(product);
+    async updateProduct(input: any): Promise<Product | null> {
+        return this._repository.update(input);
     }
 
     async deleteProduct(id: number): Promise<Product> {
